@@ -1,7 +1,7 @@
----
+
 # 🛡️ NEURAL_CORE_V1 // AI_ANALYZER
 
-> **STATUS:** `STABLE` | **ENCRYPTION:** `AES-256` | **ENGINE:** `GEMINI_3_FLASH`
+> **STATUS:** `STABLE` | **ENGINE:** `GEMINI_2.5_FLASH`
 
 A high-fidelity, cyberpunk-themed linguistic diagnostic interface. This system processes raw data streams through a neural pipeline to extract sentiment, summaries, and key insight vectors.
 
@@ -17,11 +17,14 @@ A high-fidelity, cyberpunk-themed linguistic diagnostic interface. This system p
 * **DataStream:** Vertical neural summarization module with a custom thin-scroll terminal aesthetic.
 * **KeyPoints:** Vector extraction list with geometric node wiring and "Data Pointer" indexing.
 
+
+
 ### 2. Neural Backend (FastAPI + Python)
 
 * **Framework:** FastAPI for high-performance asynchronous **UPLINK**.
 * **AI Service:** Integrated with Google Gemini via `ai_service.py`.
-* **CORS:** Fully enabled for local development environments.
+* **CORS:** Fully enabled for local development environments (`allow_origins=["*"]`).
+
 ---
 
 ## 🚀 DEPLOYMENT_PROTOCOLS
@@ -37,10 +40,6 @@ python -m venv venv
 source venv/bin/activate  # Windows: venv\Scripts\activate
 
 # Install dependencies
-pip install fastapi uvicorn pydantic google-generativeai python-dotenv
-
-or 
-
 pip install -r requirements.txt
 
 # Start the Neural Processor
@@ -104,6 +103,7 @@ Processes raw text through the neural engine.
 ├── backend/
 │   ├── main.py            # FastAPI Entry Point (CORS & Routes)
 │   ├── ai_service.py      # Gemini Logic & Prompt Engineering
+│   ├── requirements.txt   # Backend dependencies
 │   └── .env               # API_KEYS (Strictly Local)
 ├── frontend/
 │   ├── src/
@@ -120,3 +120,4 @@ Processes raw text through the neural engine.
 ## ⚠️ SECURITY_NOTE
 
 **CRITICAL:** Ensure your `GEMINI_API_KEY` is stored in the `backend/.env` file. Do **NOT** commit the `.env` file to public repositories to prevent unauthorized neural access and quota draining.
+
