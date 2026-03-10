@@ -1,0 +1,197 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;900&family=JetBrains+Mono:wght@400;700&display=swap');
+
+:root {
+  --neon-cyan: #00f2ff;
+  --neon-magenta: #ff00e6;
+  --neon-yellow: #fcee0a;
+  --bg-dark: #020205;
+  --glass: rgba(0, 242, 255, 0.05);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+.cyber-main-wrapper {
+  width: 100vw;
+  height: 100vh;
+  background: var(--bg-dark);
+  overflow: hidden;
+  position: relative;
+  font-family: 'JetBrains Mono', monospace;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Background Grid & Scanline */
+.cyber-grid {
+  position: absolute;
+  inset: 0;
+  background-image: 
+    linear-gradient(var(--glass) 1px, transparent 1px),
+    linear-gradient(90deg, var(--glass) 1px, transparent 1px);
+  background-size: 50px 50px;
+  mask-image: radial-gradient(circle, black, transparent 80%);
+}
+
+.scanline {
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  background: rgba(0, 242, 255, 0.1);
+  top: 0;
+  z-index: 10;
+  animation: scan 4s linear infinite;
+}
+
+/* HUD Layout */
+.hud-container {
+  width: 90%;
+  height: 85vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  z-index: 5;
+  border-left: 1px solid var(--neon-cyan);
+  border-right: 1px solid var(--neon-cyan);
+  padding: 2rem;
+  background: radial-gradient(circle at center, rgba(0, 242, 255, 0.03) 0%, transparent 70%);
+}
+
+.hud-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  border-bottom: 1px solid var(--glass);
+  padding-bottom: 1rem;
+}
+
+.cyber-glitch-text {
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 900;
+  font-size: 2.5rem;
+  color: var(--neon-cyan);
+  text-shadow: 0 0 10px var(--neon-cyan);
+}
+
+/* Topology Nodes */
+.hud-core {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 3rem;
+}
+
+.topology-grid {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+.node-wrapper {
+  padding: 1.5rem;
+  border: 1px solid currentColor;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 120px;
+  background: rgba(0,0,0,0.5);
+  position: relative;
+}
+
+.node-wrapper.cyan { color: var(--neon-cyan); box-shadow: 0 0 15px rgba(0, 242, 255, 0.2); }
+.node-wrapper.magenta { color: var(--neon-magenta); box-shadow: 0 0 15px rgba(255, 0, 230, 0.2); }
+.node-wrapper.yellow { color: var(--neon-yellow); box-shadow: 0 0 15px rgba(252, 238, 10, 0.2); }
+
+.node-connector {
+  height: 2px;
+  width: 50px;
+  background: var(--glass);
+  position: relative;
+}
+
+/* Terminal Window */
+.terminal-window {
+  background: rgba(0, 0, 0, 0.8);
+  border: 1px solid var(--glass);
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.terminal-header {
+  background: var(--glass);
+  padding: 5px 15px;
+  font-size: 0.7rem;
+  color: var(--neon-cyan);
+}
+
+.terminal-body {
+  padding: 15px;
+  font-size: 0.85rem;
+}
+
+.log-line { margin-bottom: 5px; opacity: 0.8; }
+.cyan-t { color: var(--neon-cyan); }
+.magenta-t { color: var(--neon-magenta); }
+.yellow-t { color: var(--neon-yellow); }
+
+/* The Button */
+.cyber-trigger {
+  all: unset;
+  cursor: pointer;
+  position: relative;
+  padding: 1rem 3rem;
+  background: transparent;
+  color: var(--neon-cyan);
+  border: 1px solid var(--neon-cyan);
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 900;
+  transition: 0.3s;
+  overflow: hidden;
+  display: block;
+  width: fit-content;
+  margin: 0 auto;
+}
+
+.cyber-trigger:hover {
+  background: var(--neon-cyan);
+  color: black;
+  box-shadow: 0 0 30px var(--neon-cyan);
+}
+
+.hud-footer {
+  text-align: center;
+}
+
+.dev-tag {
+  margin-top: 1rem;
+  font-size: 0.7rem;
+  color: var(--neon-magenta);
+  opacity: 0.5;
+}
+
+/* Animations */
+@keyframes scan {
+  from { top: 0; }
+  to { top: 100%; }
+}
+
+.pulse-icon {
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.2); opacity: 0.5; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .topology-grid { flex-direction: column; gap: 10px; }
+  .node-connector { width: 2px; height: 20px; }
+  .cyber-glitch-text { font-size: 1.5rem; }
+  .hud-container { height: 95vh; padding: 1rem; }
+}
